@@ -1,0 +1,271 @@
+جميل — حضّرت لك برومبت عربي كامل، منظم، صارم بالتوجيه تقدر تلصقه مباشرة لأي مطور/ذكاء اصطناعي تعمل معه. البرومبت يشرح المطلوب خطوة-بخطوة (إنشاء ملف ألوان أساسي، تجاوز ألوان Tailwind بدون تغيير أسماء الكلاسات، ملفات تصاميم ريسبونسف منفصلة، سير العمل، خطوات الفحص والتسليم، وقائمة الملفات). أضفت أمثلة شفرات جاهزة (تستخدمها مباشرة) وتعليمات تحميل الـ CSS بالترتيب الصحيح.
+
+انسخ النص التالي وأرسله للشخص/الأداة اللي بتنفذ المشروع:
+
+برومبت (نسخة نهائية — أرسلها كما هي)
+
+> انت مُكلّف كمطور/مصمم واجهات أمامية. نفِّذ التعليمات أدناه حرفياً وبصرامة. لا تغيّر أسماء الكلاسات الموجودة في قوالبي. أي تغيير باسم كلاس سيعتبر خطأ ويتسبب في إرجاع العمل للتصحيح فوراً. اقرأ كامل البرومبت قبل التنفيذ.
+
+
+
+1 — هدف العمل (مختصر وصارم)
+
+بناء واجهة أمامية ثابتة (static frontend) لمشروع stillness-aroma2 باستخدام HTML5 + Tailwind CDN + JavaScript (ES6). لا تستخدم React/Vue/Svelte أو أي backend. الملفات تسلَّم داخل ZIP جاهز لتشغيل محلياً. التصميم يجب أن يكون محترف، دافئ، وراقي ويعكس هوية Stillness Aroma.
+
+2 — قيود صارمة
+
+1. لا تغيّر أسماء كلاسات Tailwind في ملفات HTML الحالية.
+
+
+2. لا تلمس هيكل DOM أو أسماء id/class في القوالب.
+
+
+3. كل التعديلات اللونية والتجاوبية يجب أن تتم عبر ملفات CSS خارجية تُحمَل بعد Tailwind CDN.
+
+
+4. عند تجاوز قواعد Tailwind استخدم أسلوبًا آمنًا (إعادة تعريف الكلاس نفسه أو استخدام !important فقط حيث يلزم) لكن لا تعدّل HTML.
+
+
+
+3 — استراتيجية الألوان (الخطوات التقنية)
+
+نحن نستخدم Tailwind CDN — لا نستطيع إعادة بناء Tailwind. لذلك نطبق الحل التالي:
+
+1. إنشئ ملف tokens.css يحتوي متغيرات CSS (الـ design tokens): ألوان، فونت، مسافات، ظلال، أشكال زوايا. مثال:
+
+
+
+:root{
+  --color-primary: #8B5E3C;
+  --color-primary-600: #7a5132;
+  --color-accent: #A97454;
+  --color-bg: #F6F1EC;
+  --color-text: #222222;
+  --color-muted: #6B6B6B;
+  /* خطوط، مسافات، ظلال */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --radius-md: 12px;
+  --shadow-soft: 0 6px 20px rgba(35,30,25,0.08);
+}
+
+2. إنشئ ملف overrides.css يحمَل بعد Tailwind ويمثل “ربط” بين كلاسات Tailwind والألوان الجديدة. الفكرة: نعيد تعريف الكلاسات المستخدمة في القالب بنفس الاسم ولكن بقيمنا. مثال (ضع هذا في overrides.css):
+
+
+
+/* مثال: تغطية خلفيات ونصوص مستدعاه من Tailwind */
+.bg-amber-500, .bg-yellow-500, .bg-primary {
+  background-color: var(--color-primary) !important;
+}
+.bg-amber-600, .bg-yellow-600 {
+  background-color: var(--color-primary-600) !important;
+}
+.text-amber-900, .text-primary {
+  color: var(--color-text) !important;
+}
+.border-amber-200, .border-primary {
+  border-color: var(--color-accent) !important;
+}
+/* أضف هنا كل الكلاسات اللونية التي يستخدمها قالبك */
+
+> ملاحظة: استبدل أسماء .bg-amber-500 بالكلاسات الحقيقية المستعملة في قالبك — سأعطي أمثلة عند فحص أول صفحة.
+
+
+
+3. تحميل الملفات بالترتيب الصحيح في <head>:
+
+
+
+<!-- Tailwind CDN (موجود حالياً) -->
+<link href="https://cdn.tailwindcss.com" rel="stylesheet">
+
+<!-- ملف tokens ثم overrides (يحملا بعد المكتبة) -->
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/overrides.css">
+
+السبب: تحميل overrides بعد Tailwind يسمح لنا بإعادة تعريف نفس أسماء الكلاسات دون تعديل HTML.
+
+4. متى نستعمل !important؟
+فقط في حالات تداخل قوية؛ استعمله بحكمة ومختصر لتفادي تعقيد الصيانة.
+
+
+
+4 — حماية من كسر التصميم
+
+لا تُحوِّل أو تعيد أسماء الكلاسات. أي وظيفة لونية جديدة يجب أن تُطبّق عبر إعادة تعريف الكلاس نفسه في overrides.css.
+
+إن احتجت لإضافة CSS خاص بمكون معيّن، ضعه في ملف components.css مع اختيار selector لا يتضارب مع أسماء الكلاسات (مثال: [data-sa-component="hero"] .card).
+
+اختبارات: بعد كل تعديل، افحص 3 أحجام (320px، 768px، 1920px) للتأكد أن شيئًا لم ينكسر.
+
+
+5 — خطة العمل خطوة بخطوة (سير العمل المطلوب منك)
+
+1. أنشئ ملفات CSS الأساسية:
+
+/assets/css/tokens.css (tokens)
+
+/assets/css/overrides.css (تعريف مجدد لكلاسات Tailwind المستعملة)
+
+/assets/css/responsive-fixes.css (قواعد ريسبونسف إضافية لكل الصفحة)
+
+/assets/css/components.css (تنسيقات مكونات إن لزم)
+
+
+
+2. أرسل لي الكود الكامل للصفحة الأولى (index.html) — سأحلله وأعطيك قائمة الكلاسات اللونية المستعملة وخريطة استبدال (سأكتب overrides جاهزة).
+
+
+3. بعد تطبيق overrides، سنفحص الصفحة ونصلّح أي كسر في الـ layout عبر responsive-fixes.css (قواعد واضحة ومقيدة).
+
+
+4. كرر نفس الخطوات لكل صفحة تبعًا للأولوية: recipes.html → recipe detail → media → simulator → admin pages.
+
+
+5. بعد الانتهاء من كل الصفحات ننتقل للحركات الجمالية باستخدام مكتبات JS (GSAP, AOS, Swiper, Lightbox...). كل إضافة JS لا تغيّر DOM الأساسي — فقط تأثيرات/تفاعل.
+
+
+
+6 — قواعد كتابة CSS الخاصة بي (قيود)
+
+لا تستخدم selectors مرتفعة التعقيد (avoid deeply-nested selectors).
+
+اجعل كل قاعدة موثقة بتعليق يوضح سبب وجودها (مثال: /* override tailwind .bg-amber-500 for brand color */).
+
+تجنّب تحرير ملفات HTML إلا للربط (link) للملفات الجديدة.
+
+اجعل التغييرات قابلة للعكس: لا تلمس HTML.
+
+
+7 — مثال عملي: عيّنات لملفي tokens.css وoverrides.css
+
+(أدرج داخل البرومبت لسهولة التنفيذ)
+
+/* tokens.css */
+:root{
+  --color-primary: #8B5E3C;
+  --color-primary-600: #724b33;
+  --color-accent: #A97454;
+  --color-bg: #FBF8F5;
+  --color-surface: #FFF9F6;
+  --color-text: #2B2B2B;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --shadow-soft: 0 8px 30px rgba(35,30,25,0.06);
+  --fw-regular: 400;
+  --fw-medium: 600;
+}
+
+/* overrides.css (بداية — أضف المزيد حسب الصفحة) */
+.bg-amber-500, .bg-yellow-400 { background-color: var(--color-primary) !important; }
+.text-amber-900, .text-yellow-900 { color: var(--color-text) !important; }
+.border-amber-200 { border-color: rgba(139,94,60,0.12) !important; }
+
+/* مثال Hover */
+.btn-brand { background-color: var(--color-primary); color: #fff; border-radius: var(--radius-md); box-shadow: var(--shadow-soft); }
+.btn-brand:hover { background-color: var(--color-primary-600); transform: translateY(-2px); transition: all .18s ease; }
+
+8 — ريسبونسف: ملف منفصل لتصليحات responsive (نماذج)
+
+ضع أي قواعد خاصة بالشاشات المختلفة في responsive-fixes.css. أمثلة:
+
+/* responsive-fixes.css */
+/* mobile first adjustments */
+@media (min-width: 768px){
+  .hero .headline { font-size: 2.4rem; }
+}
+@media (min-width: 1024px){
+  .hero .headline { font-size: 3.6rem; max-width: 900px; }
+}
+
+9 — فحص القوالب (Checklist للتحقق)
+
+عند تسليم كل صفحة مطلوب منك التحقق من البنود التالية وإرسال تقرير قصير:
+
+[ ] هل تم تحميل /assets/css/tokens.css و/assets/css/overrides.css بعد Tailwind؟ (نعم/لا)
+
+[ ] هل تغيّرت أي أسماء كلاسات في HTML؟ (لا يجب أن يتغير)
+
+[ ] اختبار في 3 أحجام شاشة (320px, 768px, 1920px) — صور/لقطات شاشة.
+
+[ ] فحص الوصول (tab order, aria roles, contrast) — نقاط قصور إن وُجدت.
+
+[ ] قائمة الكلاسات اللونية التي تمت تغطيتها في overrides.css.
+
+
+10 — هيكل المشروع المطلوب (ضعه داخل README)
+
+stillness-aroma2/
+├─ index.html
+├─ recipes.html
+├─ recipes/slug.html
+├─ recipes/slug-print.html
+├─ learn.html
+├─ learn/slug.html
+├─ equipment.html
+├─ media.html
+├─ simulator.html
+├─ favorites.html
+├─ search.html
+├─ contact.html
+├─ about.html
+├─ auth/
+│  ├─ login.html
+│  ├─ signup.html
+│  └─ forgot.html
+├─ account/
+│  ├─ profile.html
+│  ├─ settings.html
+│  └─ delete.html
+├─ admin/
+│  ├─ login.html
+│  ├─ dashboard.html
+│  ├─ recipes.html
+│  └─ ... (other admin pages)
+├─ assets/
+│  ├─ css/
+│  │  ├─ tokens.css
+│  │  ├─ overrides.css
+│  │  ├─ components.css
+│  │  └─ responsive-fixes.css
+│  ├─ js/
+│  ├─ images/
+│  ├─ icons/
+│  └─ fonts/
+└─ README.md
+
+11 — خطواتك الآن (ما أريده منك فوراً)
+
+1. أنشئ ملفات CSS الأربعة المذكورة أعلاه داخل /assets/css/.
+
+
+2. أرسل لي محتوى ملف index.html الكامل هنا (أو ألصقه في رسالتك التالية).
+
+
+3. سأحلل index.html وأُخرِج:
+
+جميع كلاسات Tailwind اللونية المستخدمة.
+
+ملف overrides.css الجاهز الذي يغطي هذه الكلاسات.
+
+اقتراحات responsive-fixes الأولية (قواعد CSS جاهزة).
+
+
+
+4. بعد تطبيقك للـ overrides، أرسل لقطات شاشة أو الكود مرة أخرى للأختبار النهائي.
+
+
+
+12 — ملاحظات نهائية صارمة
+
+أي تعديل HTML غير مُوافق عليه مسبقاً سيُعتبر خطأ.
+
+أريد ردًّا منك يتضمن: "موافق — سأنفّذ الخطوات 1 و2 وأرسل index.html" قبل البدء.
+
+العمل يكون iterative: كل صفحة نحلها كاملة قبل الانتقال للتالية.
+
+
+
+---
+
+إذا تريد، أكتب لك الآن قالب جاهز لِـ overrides.css مبدئي بحسب ألوانك (أدخلت ألوان من الصورة التي ذكرتها: #8B5E3C, #A97454, ...). أحتاج فقط أن ترسل لي index.html لكي أُكمل الخريطة اللونية الدقيقة.
+

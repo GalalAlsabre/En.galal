@@ -1,0 +1,66 @@
+/*
+  /assets/css/responsive.css
+  This file handles all responsive adjustments for smaller screens.
+*/
+
+/* --- For Tablets and Smaller (max-width: 767px) --- */
+@media (max-width: 767px) {
+    /* Reduce padding for better use of space */
+    main {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
+    }
+    
+    /* Reduce font sizes for all headings */
+    h1, .hero-title {
+        font-size: 2.5rem !important; /* Was 3.5rem+ */
+        line-height: 1.2 !important;
+    }
+    h2, .section-title {
+        font-size: 2rem !important; /* Was 2.5rem+ */
+    }
+    h3 {
+        font-size: 1.5rem !important; /* Was 1.8rem+ */
+    }
+
+    /* Make hero section content more compact */
+    .hero-section {
+        min-height: 70vh !important;
+    }
+    .hero-subtitle {
+        font-size: 1.1rem !important;
+    }
+    .coffee-cup-illustration .fa-coffee {
+        font-size: 8rem !important;
+    }
+
+    /* Stack featured cards vertically */
+    .feature-card.flex-col.md\:flex-row,
+    .feature-card.flex-col.md\:flex-row-reverse {
+        flex-direction: column !important;
+    }
+    .feature-card > div {
+        width: 100% !important;
+    }
+}
+
+/* --- For Small Mobile Phones (max-width: 480px) --- */
+@media (max-width: 480px) {
+    /* Further reduce heading sizes */
+    h1, .hero-title {
+        font-size: 2rem !important;
+    }
+    h2, .section-title {
+        font-size: 1.75rem !important;
+    }
+    
+    /* Make buttons in CTA stack */
+    .cta-section .flex {
+        flex-direction: column;
+    }
+    .cta-section a {
+        width: 100%;
+    }
+}

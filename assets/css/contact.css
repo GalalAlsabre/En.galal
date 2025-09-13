@@ -1,0 +1,92 @@
+/*
+  /assets/css/contact.css
+  (Refined version to match the final, unified design system)
+*/
+
+/* --- 1. Main Form Container --- */
+/* This ensures the form has a consistent card-like background and padding */
+.contact-form-container {
+    background-color: var(--c-bg-card);
+    border: 1px solid var(--c-border);
+    border-radius: 1rem; /* 16px */
+    padding: 2rem 1.5rem; /* 32px horizontal, 24px vertical padding */
+    box-shadow: 0 4px 25px -10px rgba(74, 66, 59, 0.1);
+}
+@media (min-width: 768px) {
+    .contact-form-container {
+        padding: 3rem; /* More padding on desktop */
+    }
+}
+
+
+/* --- 2. Form Input & Textarea General Styles --- */
+/* IMPROVEMENT: Unified input styles */
+.form-input {
+  width: 100%;
+  height: 3.25rem; /* 52px */
+  padding: 0 1rem;
+  border: 1px solid var(--c-border);
+  border-radius: 8px;
+  background-color: var(--c-bg-main); /* Match the main page background for a subtle effect */
+  color: var(--c-text-body);
+  font-family: var(--font-secondary);
+  transition: all 0.2s ease-in-out;
+}
+.form-input::placeholder {
+  color: var(--c-text-subtle);
+}
+
+/* --- Focus State --- */
+.form-input:focus {
+  outline: none;
+  border-color: var(--c-accent);
+  box-shadow: 0 0 0 3px rgba(139, 94, 60, 0.2);
+}
+
+/* --- Error State (to be added by JS) --- */
+.form-input.form-error {
+  border-color: #D32F2F; /* A stronger red for better visibility */
+}
+.form-input.form-error:focus {
+  box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.2);
+}
+
+/* --- Textarea Specifics --- */
+.form-textarea {
+  min-height: 10rem;
+  padding-top: 1rem;
+  resize: vertical;
+}
+
+/* --- Submit Button --- */
+/* IMPROVEMENT: Enhanced button with shadow and hover effect */
+.btn-primary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 3.25rem; /* 52px */
+  border-radius: 8px;
+  border: none;
+  background-color: var(--c-accent);
+  color: var(--c-text-on-dark);
+  font-family: var(--font-secondary);
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 8px -2px rgba(139, 94, 60, 0.4);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px -2px rgba(139, 94, 60, 0.4);
+}
+
+/* --- Success Message --- */
+/* IMPROVEMENT: Ensured it inherits the correct background */
+.success-message {
+  display: none;
+  text-align: center;
+  padding: 3rem 2rem;
+  border: 1px solid var(--c-border);
+  border-radius: 1rem;
+  background-color: var(--c-bg-card);
+}

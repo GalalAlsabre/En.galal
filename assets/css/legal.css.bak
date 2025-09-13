@@ -1,0 +1,150 @@
+/* /assets/css/legal.css - THE CORRECT BASE CODE */
+
+/* تنسيق المحتوى الرئيسي للصفحات القانونية */
+.legal-content h1 {
+  margin-bottom: 2rem;
+}
+.legal-content > p {
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.8;
+  color: var(--c-text-subtle);
+  margin-bottom: 3rem;
+}
+.legal-content h2 {
+  margin-bottom: 1.5rem;
+}
+
+/* تنسيق قائمة المميزات (Accessibility Features) */
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* المسافة بين العناصر */
+}
+.features-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.features-list .icon-wrapper {
+  flex-shrink: 0;
+  width: 1.5rem; /* 24px */
+  height: 1.5rem; /* 24px */
+  border-radius: 9999px;
+  background-color: var(--c-accent) !important;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+}
+.features-list .icon-wrapper svg {
+  width: 0.875rem; /* 14px */
+  height: 0.875rem;
+}
+.features-list p {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--c-text-body);
+}
+.features-list p .font-semibold {
+  color: var(--c-text-heading);
+}
+
+/* تنسيق صندوق معلومات الاتصال */
+.info-box {
+  background-color: #F5F1EB;
+  border-radius: 12px;
+  padding: 2rem;
+  border: 1px solid var(--c-border);
+  margin-top: 2rem;
+}
+.info-box p {
+  font-size: 1.125rem;
+}
+.info-box a {
+  color: var(--c-accent) !important;
+  font-weight: 600;
+}
+
+
+
+/*
+  /assets/css/legal.css
+  (Styles for all legal pages like Cookies, Privacy, Terms)
+*/
+
+/* --- 1. Main Page Container --- */
+/* This will center the content and ensure it's responsive */
+.legal-container {
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 4rem 1rem;
+}
+
+/* --- 2. Typography for Legal Pages --- */
+.legal-container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+.legal-container .page-subtitle {
+    font-size: 1.125rem;
+    color: var(--c-text-subtle);
+    margin-bottom: 3rem;
+}
+.legal-container h3 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    margin-top: 3rem; /* Add space between sections */
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--c-border);
+}
+.legal-container p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--c-text-body);
+}
+.legal-container a {
+    color: var(--c-accent);
+    font-weight: 600;
+}
+.legal-container a:hover {
+    text-decoration: underline;
+}
+
+/* --- 3. Custom Table for Cookies --- */
+.cookie-table {
+    border: 1px solid var(--c-border);
+    border-radius: 1rem;
+    overflow: hidden;
+    margin-top: 2rem;
+}
+.cookie-table-row {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile-first: single column */
+    border-bottom: 1px solid var(--c-border);
+}
+.cookie-table-row:last-child {
+    border-bottom: none;
+}
+.cookie-table-header {
+    background-color: var(--c-bg-card-soft);
+    padding: 1.25rem;
+    font-weight: 600;
+    color: var(--c-text-heading);
+}
+.cookie-table-data {
+    padding: 1.25rem;
+}
+/* Desktop layout for the table */
+@media (min-width: 768px) {
+    .cookie-table-row {
+        grid-template-columns: 25% 1fr; /* Two columns on desktop */
+    }
+    .cookie-table-header {
+        border-right: 1px solid var(--c-border);
+    }
+}

@@ -1,0 +1,182 @@
+
+
+/*
+  /assets/css/learn.css
+  (Final, Corrected Version - Styles apply to existing HTML structure)
+*/
+
+/* --- 1. Breadcrumbs (No changes needed) --- */
+.breadcrumb {
+  font-family: var(--font-secondary);
+  font-size: 0.875rem;
+  margin-bottom: 2rem;
+}
+.breadcrumb a { color: var(--c-accent); transition: color 0.2s ease; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb span { color: var(--c-text-subtle); }
+
+/* --- 2. Article Header (THE FIX IS HERE) --- */
+/* We add padding and a bottom border to visually group the title and subtitle */
+.article-header {
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--c-border);
+  padding: 1.5rem; /* This adds padding on all sides */
+  padding-top: 0;   /* We remove top padding as it's not needed */
+  margin-bottom: 2rem;
+  border: 1px solid var(--c-border); /* Add a full border */
+  border-radius: 1rem; /* Add rounded corners */
+  background-color: var(--c-bg-card);
+}
+.article-header h1 {
+  font-size: 3rem; /* 48px on desktop */
+  line-height: 1.2;
+}
+.article-header .subtitle {
+  font-size: 1.25rem; /* 20px */
+  color: var(--c-text-subtle);
+  margin-top: 1rem;
+}
+
+/* --- 3. Article Meta (No changes needed) --- */
+.article-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+
+/* --- 4. Article Meta (معلومات المقال) --- */
+/* No major changes needed here, it's already well-structured */
+.article-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.article-meta .author-avatar {
+  width: 3rem; height: 3rem;
+  border-radius: 9999px;
+  object-fit: cover;
+}
+.article-meta .meta-text {
+  font-family: var(--font-secondary);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+.article-meta .author-name {
+  font-weight: 700;
+  color: var(--c-text-heading);
+}
+.article-meta .publish-date { color: var(--c-text-subtle); }
+
+
+.article-content {
+  background-color: var(--c-bg-card); /* Soft card background */
+  border: 1px solid var(--c-border);
+  border-radius: 1rem; /* 16px */
+  padding: 1.5rem; /* 24px */
+  box-shadow: 0 5px 25px -10px rgba(74, 66, 59, 0.08);
+}
+@media (min-width: 768px) {
+  .article-content {
+    padding: 2.5rem; /* More padding on desktop */
+  }
+}
+
+/* --- Styles for elements INSIDE the article content box --- */
+.article-content h2 {
+  font-size: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--c-border);
+}
+/* First h2 doesn't need extra top margin */
+.article-content h2:first-of-type {
+    margin-top: 0;
+}
+.article-content p, 
+.article-content ul, 
+.article-content ol {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: var(--c-text-body);
+}
+.article-content a {
+  color: var(--c-accent);
+  text-decoration: underline;
+  font-weight: 600;
+}
+.article-content img {
+  border-radius: 12px;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+
+
+
+/*
+  /assets/css/learn.css
+  (Final, robust solution for related posts)
+*/
+
+/* ... All other styles for breadcrumb, article-header, etc. remain the same ... */
+
+/* --- 5. Related Posts Section --- */
+.related-posts-section {
+    background-color: var(--c-bg-card-soft);
+    padding: 4rem 1rem; /* Added horizontal padding for mobile */
+    margin-top: 4rem;
+    border-top: 1px solid var(--c-border);
+}
+@media(min-width: 768px) {
+    .related-posts-section {
+        padding: 4rem;
+    }
+}
+.related-posts-section h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+/* THE CRITICAL FIX IS HERE */
+.related-card {
+    display: flex;          /* 1. Make the card a flex container */
+    flex-direction: column; /* 2. Stack items vertically */
+    height: 100%;           /* 3. Force card to fill the height of the grid row */
+    
+    /* Inherits background and border from .info-card in colors.css */
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.related-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px -10px rgba(74, 66, 59, 0.15) !important;
+}
+
+/* Fixed height for the image */
+.related-card img {
+  height: 180px; /* Fixed height for the image */
+  width: 100%;
+  object-fit: cover; /* Ensures image covers the area without distortion */
+}
+
+/* The text content area */
+.related-card-content {
+    padding: 1.25rem;
+    flex-grow: 1; /* Allows this part to grow and fill remaining space */
+    display: flex;
+    flex-direction: column;
+}
+.related-card-content h3 {
+    color: var(--c-text-heading);
+}
+.related-card-content p {
+    color: var(--c-text-subtle);
+    flex-grow: 1; /* Pushes the button (if any) to the bottom */
+}

@@ -1,0 +1,50 @@
+/*
+  /assets/css/base.css
+  This is the new foundation of our project.
+  It MUST be loaded inside a <style type="text/tailwindcss"> tag to work correctly.
+*/
+
+/* 
+  These directives tell Tailwind to include its base styles, component classes, and utility classes.
+  It's the standard way to start a Tailwind CSS file.
+*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  We use '@layer base' to define our project's foundational styles.
+  This includes our color palette, default fonts, and body styling.
+  These styles have low specificity, so they can be easily overridden by other utilities.
+*/
+@layer base {
+    /* 
+      This is our Single Source of Truth for colors.
+      We define our entire brand palette here as CSS Custom Properties (variables).
+      If we ever need to change a color, we only change it in this one place.
+    */
+    :root {
+      --c-bg-main: #F9F6F2;       /* The main page background color */
+      --c-bg-card: #FFFCF7;       /* The background color for cards and pop-ups */
+      --c-text-heading: #44382E;  /* Color for main titles (H1, H2, etc.) */
+      --c-text-body: #5E5146;     /* Color for regular paragraph text */
+      --c-text-subtle: #A98C71;   /* A lighter color for secondary text, like descriptions */
+      --c-accent: #8B5E3C;        /* Our main brand color for buttons, links, and highlights */
+      --c-border: #EAE0D5;        /* A soft color for borders and dividers */
+    }
+
+    /*
+      Here, we apply our variables to the base HTML elements.
+      We use @apply to leverage Tailwind's utility classes directly in our CSS.
+      This ensures consistency and reduces repetition.
+    */
+    body {
+        @apply bg-[var(--c-bg-main)] text-[var(--c-text-body)];
+        font-family: 'Noto Sans', sans-serif; /* Default font for the entire site */
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        @apply text-[var(--c-text-heading)];
+        font-family: 'Newsreader', serif; /* A more elegant font for headings */
+    }
+}

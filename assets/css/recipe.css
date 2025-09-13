@@ -1,0 +1,138 @@
+/*
+  /assets/css/recipe.css
+  (Styles for the Recipe Detail page)
+*/
+
+/* --- 1. Main Page Layout --- */
+.recipe-container {
+    max-width: 1000px; /* Wider container for this layout */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem 1rem;
+}
+
+/* --- 2. Recipe Header --- */
+.recipe-header h1 {
+    font-size: 3rem; /* 48px */
+}
+.recipe-header p {
+    color: var(--c-text-subtle);
+    font-size: 1.125rem; /* 18px */
+    max-width: 600px;
+}
+.recipe-header .btn {
+    padding: 0.6rem 1.25rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.recipe-header .btn-primary {
+    background-color: var(--c-accent);
+    color: var(--c-text-on-dark);
+}
+.recipe-header .btn-secondary {
+    background-color: var(--c-bg-card-soft);
+    color: var(--c-text-body);
+}
+
+/* --- 3. Main Content & Sidebar Layout --- */
+.recipe-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+@media (min-width: 1024px) { /* lg breakpoint */
+    .recipe-body {
+        grid-template-columns: 1fr 300px; /* Main content and a 300px sidebar */
+        gap: 3rem;
+    }
+}
+
+/* --- 4. Ingredients List --- */
+.ingredients-list h3, .instructions-list h3 {
+    font-size: 1.75rem; /* 28px */
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--c-border);
+}
+.ingredient-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: var(--c-bg-card);
+    padding: 1rem;
+    border-radius: 0.75rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+.ingredient-item:hover {
+    border-color: var(--c-border);
+}
+.ingredient-item input[type="checkbox"] {
+    height: 1.25rem; width: 1.25rem;
+    border-radius: 0.375rem;
+    color: var(--c-accent);
+    border-color: var(--c-border);
+}
+.ingredient-item input[type="checkbox"]:focus {
+    ring: var(--c-accent);
+}
+.ingredient-item p { margin: 0; }
+
+/* --- 5. Instructions List --- */
+.instruction-step {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+.instruction-step .step-number {
+    font-family: var(--font-primary);
+    font-size: 2.5rem;
+    color: var(--c-accent);
+    line-height: 1;
+}
+.instruction-step .step-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--c-text-heading);
+}
+.instruction-step .step-description {
+    margin-top: 0.5rem;
+    line-height: 1.8;
+}
+
+/* --- 6. Sidebar Info Card --- */
+.recipe-info-card {
+    background-color: var(--c-bg-card-soft);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    position: sticky;
+    top: 6rem; /* Adjust based on header height */
+}
+.recipe-info-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+}
+.info-item:not(:last-child) {
+    border-bottom: 1px solid var(--c-border);
+}
+.info-item .label {
+    color: var(--c-text-subtle);
+}
+.info-item .value {
+    font-weight: 600;
+    color: var(--c-text-heading);
+}

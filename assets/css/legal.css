@@ -1,0 +1,160 @@
+/* /assets/css/legal.css - THE CORRECT BASE CODE */
+
+/* تنسيق المحتوى الرئيسي للصفحات القانونية */
+.legal-content h1 {
+  margin-bottom: 2rem;
+}
+.legal-content > p {
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.8;
+  color: var(--c-text-subtle);
+  margin-bottom: 3rem;
+}
+.legal-content h2 {
+  margin-bottom: 1.5rem;
+}
+
+/* تنسيق قائمة المميزات (Accessibility Features) */
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* المسافة بين العناصر */
+}
+.features-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.features-list .icon-wrapper {
+  flex-shrink: 0;
+  width: 1.5rem; /* 24px */
+  height: 1.5rem; /* 24px */
+  border-radius: 9999px;
+  background-color: var(--c-accent) !important;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+}
+.features-list .icon-wrapper svg {
+  width: 0.875rem; /* 14px */
+  height: 0.875rem;
+}
+.features-list p {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--c-text-body);
+}
+.features-list p .font-semibold {
+  color: var(--c-text-heading);
+}
+
+/* تنسيق صندوق معلومات الاتصال */
+.info-box {
+  background-color: #F5F1EB;
+  border-radius: 12px;
+  padding: 2rem;
+  border: 1px solid var(--c-border);
+  margin-top: 2rem;
+}
+.info-box p {
+  font-size: 1.125rem;
+}
+.info-box a {
+  color: var(--c-accent) !important;
+  font-weight: 600;
+}
+
+
+
+/*
+  /assets/css/legal.css
+  (Styles for all legal pages like Cookies, Privacy, Terms)
+*/
+/*
+  /assets/css/legal.css
+  (Final, Aesthetically Refined Version to match the screenshot)
+*/
+
+/* --- 1. Main Page Container --- */
+.legal-container {
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 4rem 1rem;
+}
+
+/* --- 2. Typography for a Refined Look --- */
+.legal-container h2 {
+    font-size: 2.5rem; /* 40px */
+    color: var(--c-text-heading); /* Use the main heading color */
+    margin-bottom: 1rem;
+}
+.legal-container .page-subtitle {
+    font-size: 1.125rem; /* 18px */
+    color: var(--c-text-subtle); /* Use the subtle text color */
+    margin-bottom: 3.5rem;
+    line-height: 1.7;
+}
+.legal-container h3 {
+    font-size: 1.75rem; /* 28px */
+    color: var(--c-text-heading); /* Use the main heading color */
+    margin-bottom: 1rem;
+    margin-top: 3rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--c-border); /* Use the main border color */
+}
+.legal-container p {
+    font-size: 1rem; /* 16px */
+    line-height: 1.8;
+    color: var(--c-text-body); /* Use the main body text color */
+}
+.legal-container a {
+    color: var(--c-accent);
+    font-weight: 600;
+}
+.legal-container a:hover {
+    text-decoration: underline;
+}
+
+/* --- 3. A Beautifully Styled Cookie Table --- */
+.cookie-table {
+    border: 1px solid var(--c-border);
+    border-radius: 1rem; /* 16px */
+    overflow: hidden;
+    margin-top: 2rem;
+    background-color: var(--c-bg-card); /* Give the whole table a white card background */
+    box-shadow: 0 4px 25px -10px rgba(74, 66, 59, 0.08); /* A soft shadow */
+}
+.cookie-table-row {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+/* This adds the dividing line between rows */
+.cookie-table-row:not(:last-child) {
+    border-bottom: 1px solid var(--c-border);
+}
+.cookie-table-header {
+    background-color: var(--c-bg-main); /* Use the main page background for the header cell */
+    padding: 1.25rem;
+    font-weight: 600;
+    color: var(--c-text-heading);
+}
+.cookie-table-data {
+    padding: 1.25rem;
+    color: var(--c-text-body);
+}
+
+/* Desktop layout for the table */
+@media (min-width: 768px) {
+    .cookie-table-row {
+        grid-template-columns: 30% 1fr; /* Adjust column width for better balance */
+    }
+    .cookie-table-header {
+        border-right: 1px solid var(--c-border);
+    }
+}

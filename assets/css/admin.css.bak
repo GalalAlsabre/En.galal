@@ -1,0 +1,218 @@
+/* /assets/css/admin-colors.css */
+:root {
+    --admin-bg: #F8F7F6;
+    --admin-card-bg: #FFFFFF;
+    --admin-text-primary: #1C1917;
+    --admin-text-secondary: #78716C;
+    --admin-accent: #A37F5B;
+    --admin-border: #E7E5E4;
+    --font-admin: 'Inter', sans-serif;
+}
+body.admin-body {
+    background-color: var(--admin-bg);
+    color: var(--admin-text-primary);
+    font-family: var(--font-admin);
+}
+.admin-body h1, .admin-body h2, .admin-body h3, .admin-body h4 {
+    font-weight: 700;
+    color: var(--admin-text-primary);
+}
+
+
+/* /assets/css/admin-layout.css (Simple & Corrected) */
+.sidebar-link{display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;border-radius:6px;font-size:.875rem;font-weight:500;color:var(--admin-text-secondary);white-space:nowrap;transition:all .2s ease}.sidebar-link:hover{color:var(--admin-text-primary);background-color:#F3F4F6}.sidebar-link.active{background-color:var(--admin-accent);color:#fff;box-shadow:0 4px 15px -5px rgba(163,127,91,.4)}.admin-header{background-color:rgba(255,255,255,.8);backdrop-filter:blur(8px);border-bottom:1px solid var(--admin-border)}.admin-card{background-color:var(--admin-card-bg);border:1px solid var(--admin-border);border-radius:.75rem;box-shadow:0 1px 2px rgba(0,0,0,.05)}.metric-card{padding:1.5rem}.metric-card .value{font-size:2.25rem;font-weight:800}.metric-card .change{display:flex;align-items-center;gap:.25rem;font-size:.875rem;font-weight:500}.metric-card .change.positive{color:#10B981}.metric-card .change.negative{color:#EF4444}.action-card{display:flex;align-items:center;justify-content:space-between;padding:1.25rem}.action-card .icon-wrapper{width:2.5rem;height:2.5rem;display:flex;align-items:center;justify-content:center;border-radius:9999px;color:#fff}.admin-table{width:100%;font-size:.875rem}.admin-table td,.admin-table th{padding:1rem 1.5rem;text-align:left;border-bottom:1px solid var(--admin-border)}.admin-table th{font-weight:600;color:var(--admin-text-secondary)}.admin-table tbody tr:last-child td{border-bottom:none}.status-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:.5rem}.status-published{background-color:#10B981}.status-draft{background-color:#F59E0B}
+
+/*
+  /assets/css/admin.css
+  (ADDITIONS FOR SETTINGS PAGE - CAREFULLY CHECKED FOR CONFLICTS)
+*/
+
+/* --- 9. Form Section Styles (NEW) --- */
+/* This class is new and does not conflict with anything. */
+/* It's used to structure content INSIDE an .admin-card */
+.form-section {
+    padding: 1.5rem; /* 24px */
+}
+.form-section:not(:last-child) {
+    border-bottom: 1px solid var(--admin-border);
+}
+.form-section h3 {
+    font-size: 1.125rem; /* 18px */
+    font-weight: 600;
+    color: var(--admin-text-primary);
+    margin-bottom: 1.5rem;
+}
+
+/* --- 10. Form Elements (NEW & NON-CONFLICTING) --- */
+/* These styles will apply to inputs and buttons on settings/edit pages */
+.settings-form .form-input {
+    width: 100%;
+    height: 3rem; /* 48px */
+    padding: 0 1rem;
+    border: 1px solid var(--admin-border);
+    border-radius: 8px;
+    background-color: var(--admin-bg); /* Match the main page background */
+    color: var(--admin-text-primary);
+    transition: all 0.2s ease;
+}
+.settings-form .form-input:focus {
+    outline: none;
+    border-color: var(--admin-accent);
+    box-shadow: 0 0 0 3px rgba(163, 127, 91, 0.2);
+}
+.settings-form .btn-primary {
+    padding: 0.6rem 1.5rem;
+    background-color: var(--admin-accent);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    transition: background-color 0.2s ease;
+}
+.settings-form .btn-primary:hover {
+    background-color: var(--admin-accent-hover);
+}
+
+/* --- 11. Form Footer (NEW) --- */
+.form-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem 1.5rem;
+    background-color: var(--admin-bg); /* Match the main page background */
+    border-top: 1px solid var(--admin-border);
+}
+
+/*
+  /assets/css/admin.css
+  (ADDITION FOR MODALS)
+*/
+/*
+  /assets/css/admin.css
+  (THE FINAL, GUARANTEED FIX FOR MODALS)
+*/
+
+/* --- 12. Modal Base Styles --- */
+.modal {
+    display: none;
+}
+.modal.is-open {
+    display: block;
+}
+
+/* The Overlay (The background layer) */
+.modal__overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(28, 25, 23, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100; /* It's in the background */
+}
+
+/* The Container (The actual window) */
+.modal__container {
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative; /* CRITICAL: Allows z-index to work */
+    z-index: 101;      /* CRITICAL: Puts the container ON TOP of the overlay */
+}
+
+/* The Close Button (×) */
+.modal__close {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: 0;
+    color: var(--admin-text-secondary);
+}
+.modal__close:hover {
+    color: var(--admin-text-primary);
+}
+
+
+/*
+  /assets/css/admin.css
+  (ADDITIONS FOR A REFINED ARTICLES TABLE)
+*/
+
+/* --- 13. Refined Table Styles for Articles/Recipes --- */
+.content-table {
+    width: 100%;
+    font-size: 0.875rem;
+    border-collapse: separate; /* Allows for spacing between rows */
+    border-spacing: 0 0.5rem; /* Vertical spacing between rows */
+}
+.content-table thead th {
+    padding: 0.75rem 1.5rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--admin-text-secondary);
+    border-bottom: 1px solid var(--admin-border);
+}
+.content-table tbody tr {
+    background-color: var(--admin-card-bg);
+    transition: all 0.2s ease;
+}
+.content-table tbody tr:hover {
+    box-shadow: 0 4px 15px -5px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+}
+.content-table tbody td {
+    padding: 1rem 1.5rem;
+    vertical-align: middle;
+}
+.content-table tbody td:first-child {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+}
+.content-table tbody td:last-child {
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+/* Status Pills */
+.status-pill {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 9999px;
+}
+.status-published {
+    background-color: #D1FAE5; /* Green-100 */
+    color: #065F46; /* Green-800 */
+}
+.status-draft {
+    background-color: #FEF3C7; /* Yellow-100 */
+    color: #92400E; /* Yellow-800 */
+}
+
+/* Action Buttons */
+.action-buttons a, .action-buttons button {
+    color: var(--admin-text-secondary);
+    padding: 0.5rem;
+    border-radius: 9999px;
+    transition: all 0.2s ease;
+}
+.action-buttons a:hover, .action-buttons button:hover {
+    background-color: #F3F4F6; /* gray-100 */
+    color: var(--admin-text-primary);
+}
+.action-buttons .delete-btn:hover {
+    color: #DC2626; /* red-600 */
+}
+
+.btn-primary {
+    display: flex; /* <<-- ADD THIS */
+    align-items: center; /* <<-- ADD THIS */
+    gap: 0.5rem; /* <<-- ADD THIS */
+    padding: 0.6rem 1.5rem;
+    background-color: var(--admin-accent);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    transition: background-color 0.2s ease;
+}

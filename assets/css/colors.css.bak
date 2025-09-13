@@ -1,0 +1,192 @@
+/*
+  /assets/css/colors.css
+  THE FINAL, UNIFIED, AND COMPLETE DESIGN SYSTEM
+*/
+
+/* --- 1. UNIFIED Color & Font Palette --- */
+:root {
+    /* Main Theme Colors */
+    --c-bg-main: #FCF9F7;        /* Soft, warm latte background */
+    --c-bg-card: #FFFFFF;        /* Pure white for cards */
+    --c-bg-dark: #212529;        /* The dark color for the footer (from --black) */
+
+    /* Text Colors */
+    --c-text-heading: #4A423B;  /* Main titles */
+    --c-text-body: #6B6059;     /* Paragraphs */
+    --c-text-subtle: #6C757D;   /* Secondary text (from --neutral-gray) */
+    --c-text-on-dark: #FFFFFF;   /* Text on dark backgrounds */
+
+    /* Accent & Border Colors */
+    --c-accent: #8B4513;        /* The main brand color (from --coffee-brown) */
+    --c-accent-light: #A0522D;  /* A lighter accent for hover states (from --light-brown) */
+    --c-border: #EAE0D5;        /* A subtle border color */
+
+    /* Fonts */
+    --font-primary: 'Playfair Display', serif; 
+    --font-secondary: 'Inter', sans-serif;
+    --coffee-brown: #8B4513;
+}
+
+/* --- 2. Base Styles --- */
+body {
+    background-color: var(--c-bg-main) !important;
+    color: var(--c-text-body) !important;
+    font-family: var(--font-secondary) !important;
+}
+h1, h2, h3, h4, h5, h6 { 
+    font-family: var(--font-primary) !important; 
+    color: var(--c-text-heading) !important;
+    font-weight: 600 !important; 
+}
+p { 
+    color: var(--c-text-body) !important; 
+}
+
+/* --- 3. Header Styles --- */
+header {
+    background-color: var(--c-bg-main)!important;
+    /* This SVG creates a pattern of tiny, semi-transparent dots */
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8"><circle cx="4" cy="4" r="1" fill="rgba(139, 94, 60, 0.05)"/></svg>')!important;
+    backdrop-filter: blur(10px) !important;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05) !important;
+    padding-top: 1rem !important; padding-bottom: 1rem !important;
+}
+
+/* بدل السطر الواحد الموحّد: */
+header h1 {
+    color: var(--c-accent) !important;
+    font-family: var(--font-primary) !important;
+}
+
+/* خلي الأيقونة تستخدم خطها الخاص (بدون تغيير الـ font-family) */
+header .fa-coffee {
+    color: var(--c-accent) !important;
+    /* لا تضع font-family هنا */
+}
+
+header a { 
+    color: var(--c-text-heading) !important; 
+    font-weight: 500 !important; 
+    padding: 0.5rem 1rem !important; 
+    border-radius: 12px !important; 
+}
+header a:hover, header a.active { 
+    color: var(--c-accent) !important; 
+    background-color: #F5F5DC !important; /* Kept --beige value directly for simplicity */
+}
+header .btn-header {
+    color: var(--c-accent) !important; 
+    border: 1px solid var(--c-accent) !important;
+    padding: 0.5rem 1rem !important; 
+    border-radius: 12px !important; 
+    font-weight: 500 !important;
+}
+header .btn-header:hover { 
+    color: var(--c-text-on-dark) !important; 
+    background-color: var(--c-accent) !important; 
+}
+
+/* --- 4. General Card Styles --- */
+/* This will be the base style for cards on pages like Equipment, Favorites, etc. */
+.info-card, .feature-card, .equipment-card, .simulator-card {
+    background-color: var(--c-bg-card) !important;
+    border: 1px solid var(--c-border) !important;
+    box-shadow: 0 4px 25px -10px rgba(74, 66, 59, 0.1) !important;
+}
+
+/* --- 5. Footer Styles --- */
+.site-footer {
+    background-color: var(--c-bg-dark) !important;
+    color: var(--c-text-on-dark) !important;
+    padding: 3rem 0 1rem !important;
+}
+.site-footer .footer-brand {
+    font-family: var(--font-primary); font-size: 1.5rem; font-weight: 700;
+    color: var(--c-accent); margin-bottom: 1rem;
+}
+.site-footer .footer-description { 
+    color: rgba(255, 255, 255, 0.7); 
+}
+.site-footer .footer-title { 
+    color: var(--c-accent); 
+    font-weight: 600; 
+    margin-bottom: 1rem; 
+}
+.site-footer .footer-links { 
+    list-style: none; 
+    padding: 0; 
+}
+.site-footer .footer-links li { 
+    margin-bottom: 0.5rem; 
+}
+.site-footer .footer-links a { 
+    color: rgba(255, 255, 255, 0.7); 
+    transition: color 0.3s ease; 
+}
+.site-footer .footer-links a:hover { 
+    color: var(--c-accent); 
+}
+.site-footer .social-links { 
+    display: flex; gap: 1rem; 
+}
+.site-footer .social-link {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; background-color: var(--c-accent);
+    color: var(--c-text-on-dark); border-radius: 50%;
+    transition: all 0.3s ease;
+}
+.site-footer .social-link:hover {
+    background-color: var(--c-accent-light);
+    transform: translateY(-2px);
+}
+.site-footer .copyright {
+    border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    margin-top: 2rem; padding-top: 1rem;
+}
+
+
+/*
+  /assets/css/colors.css
+  (ADDITIONS FOR DROPDOWN MENU)
+*/
+
+/* --- 6. Dropdown Menu Styles --- */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+.dropdown-toggle:hover {
+    color: var(--coffee-brown);
+    background-color: var(--beige);
+}
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: var(--white);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+    z-index: 10;
+    border-radius: 8px;
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+}
+.dropdown-menu a {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    text-align: left;
+}
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+

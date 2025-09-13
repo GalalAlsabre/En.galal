@@ -1,0 +1,114 @@
+/*
+  /assets/css/search.css
+  (Styles for the Search Results Page)
+*/
+
+/* --- 1. Main Page Layout --- */
+.search-container {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 3rem 1rem;
+}
+
+/* --- 2. Search Bar --- */
+.search-bar {
+    position: relative;
+    width: 100%;
+}
+.search-bar .search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--c-text-subtle);
+}
+.search-bar .search-input {
+    height: 3.25rem; /* 52px */
+    width: 100%;
+    border-radius: 8px;
+    background-color: var(--c-bg-card-soft);
+    border: 1px solid var(--c-border);
+    padding-left: 3rem;
+    padding-right: 1rem;
+    color: var(--c-text-body);
+}
+.search-bar .search-input:focus {
+    outline: none;
+    border-color: var(--c-accent);
+    box-shadow: 0 0 0 3px rgba(139, 94, 60, 0.2);
+}
+
+/* --- 3. Filter Tabs --- */
+.filter-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--c-border);
+    margin-top: 2rem;
+}
+.filter-tab {
+    padding: 0.75rem 0;
+    margin-right: 2rem;
+    margin-bottom: -1px; /* To make the active border overlap the main border */
+    border-bottom: 2px solid transparent;
+    font-weight: 600;
+    color: var(--c-text-subtle);
+    transition: all 0.2s ease;
+}
+.filter-tab:hover {
+    color: var(--c-text-heading);
+}
+.filter-tab.active {
+    color: var(--c-text-heading);
+    border-bottom-color: var(--c-accent);
+}
+
+/* --- 4. Search Results Sections --- */
+.results-section {
+    padding-top: 2.5rem;
+}
+.results-section h2 {
+    font-size: 1.75rem; /* 28px */
+    margin-bottom: 2rem;
+}
+
+/* --- 5. Result Card (similar to article-card) --- */
+.result-card {
+    /* Inherits base styles from .info-card */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.result-card:hover .result-image img {
+    transform: scale(1.05);
+}
+.result-image {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: 0.75rem;
+}
+.result-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+.result-card .category {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--c-accent);
+    text-transform: uppercase;
+    margin-top: 1rem;
+}
+.result-card h3 {
+    font-size: 1.25rem;
+    margin-top: 0.5rem;
+}
+.result-card p {
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+}
+.result-card mark {
+    background-color: #FAEBD7; /* A soft highlight color */
+    color: var(--c-text-heading);
+    padding: 2px 4px;
+    border-radius: 4px;
+}
